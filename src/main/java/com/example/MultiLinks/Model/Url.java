@@ -9,7 +9,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "Url")
+@Table(name = "tb_url")
 public class Url {
     @Column(nullable = false)
     private LocalDate dataExpiracao;
