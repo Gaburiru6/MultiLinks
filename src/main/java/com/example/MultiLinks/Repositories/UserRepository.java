@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<User, UUID> {
-    User findByName(String name);
-    User findByNameAndEmail(String name, String email);
+    User findByNome(String nome);
+    User findByNomeAndEmail(String nome, String email);
 }
