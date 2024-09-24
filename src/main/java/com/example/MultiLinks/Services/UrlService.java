@@ -20,6 +20,10 @@ public class UrlService {
 
     public String EncurtarUrl(String urlOriginal){
 
+        if(!urlOriginal.startsWith("http://") || !urlOriginal.startsWith("https://")){
+            urlOriginal = "http://" + urlOriginal;
+        }
+
         String urlEncurtada = GerarUrl();
 
         Url url = new Url();
