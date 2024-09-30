@@ -5,6 +5,7 @@ import com.example.MultiLinks.Repositories.UrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Service
@@ -25,6 +26,7 @@ public class UrlService {
         Url url = new Url();
         url.setUrlOriginal(urlOriginal);
         url.setUrlEncurtada(urlEncurtada);
+        url.setDataExpiracao(LocalDate.now().plusDays(30));
         urlRepository.save(url);
 
         return  urlEncurtada;
