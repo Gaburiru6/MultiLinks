@@ -14,18 +14,18 @@ public class UrlService {
     @Autowired
     UrlRepository urlRepository;
 
-    private String GerarUrl(){
+    private String gerarUrl(){
         return UUID.randomUUID().toString().substring(0, 5);
     }
 
 
-    public String EncurtarUrl(String urlOriginal){
+    public String encurtarUrl(String urlOriginal){
 
         if(!urlOriginal.startsWith("http://") || !urlOriginal.startsWith("https://")){
             urlOriginal = "http://" + urlOriginal;
         }
 
-        String urlEncurtada = GerarUrl();
+        String urlEncurtada = gerarUrl();
 
         Url url = new Url();
         url.setUrlOriginal(urlOriginal);
