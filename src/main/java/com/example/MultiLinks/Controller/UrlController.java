@@ -17,33 +17,28 @@ import java.net.URISyntaxException;
 @RestController
 @RequestMapping("/api/url")
 public class UrlController {
-     @Autowired
-        private UrlService urlService;
+    @Autowired
+    private UrlService urlService;
 
-     @Autowired
-        private UrlRepository urlRepository;
+    @Autowired
+    private UrlRepository urlRepository;
 
     @PostMapping("/encurtadorUrl")
-    public ResponseEntity<String> EncurtarUrl(@RequestBody String urlOriginal){
-        String UrlEncurtada = urlService.EncurtarUrl(urlOriginal);
+    public ResponseEntity<String> encurtarUrl(@RequestBody String urlOriginal){
+        String UrlEncurtada = urlService.encurtarUrl(urlOriginal);
         return ResponseEntity.ok(UrlEncurtada);
     }
 
     @GetMapping("/{urlEncurtada}")
     public ResponseEntity redirecionarUrl(@PathVariable("urlEncurtada") String urlEncurtada){
-
-       Url url= urlRepository.findByUrlEncurtada(urlEncurtada);
-        HttpHeaders headers= new HttpHeaders();
+        Url url = urlRepository.findByUrlEncurtada(urlEncurtada);
+        HttpHeaders headers = new HttpHeaders();
         headers.setLocation(URI.create(url.getUrlOriginal()));
 
-          if(url!=null){
+        if(url != null)
+            return ResponseEntity.status(HttpStatus.FOUND).headers(headers).build();
 
-              return ResponseEntity.status(HttpStatus.FOUND).headers(headers).build();
-
-          }
-
-
-         return ResponseEntity.notFound().build();
+        return ResponseEntity.notFound().build();
     }
 
 }
